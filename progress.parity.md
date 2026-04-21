@@ -10,7 +10,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
 - [x] Phase 4: Raster/Protocol Encoder Replacement
 - [x] Phase 5: Status Frame Parser + Blocking Send Semantics
 - [x] Phase 6: Transport Parity
-- [ ] Phase 7: CLI Parity Implementation
+- [x] Phase 7: CLI Parity Implementation
 - [ ] Phase 8: Strict Fixture Expansion and Release Gating
 
 ## Phase Gate (Every Phase)
@@ -53,3 +53,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
   - Replaced USB no-op behavior with connect/write/read/dispose lifecycle abstraction
   - Added Node USB adapter device open/close + transfer method contracts
   - Added lifecycle tests for USB transport behavior
+- Completed Phase 7:
+  - Replaced canned CLI outputs with runtime-backed command handlers for print/send/discover
+  - Added `info env` and env-backed global option support (`BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PRINTER`)
+  - Switched model/label info commands to typed core registries

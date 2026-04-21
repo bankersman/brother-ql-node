@@ -8,10 +8,25 @@ describe("cli scaffold", () => {
   });
 
   it("supports v1 parity commands", () => {
-    expect(runCli(["print"]).exitCode).toBe(0);
-    expect(runCli(["send"]).exitCode).toBe(0);
+    const runtime = {
+      print: () => "printed",
+      send: () => "sent",
+      discover: () => "found-devices"
+    };
+    expect(runCli(["print"], { runtime }).output).toBe("printed");
+    expect(runCli(["send"], { runtime }).output).toBe("sent");
+    expect(runCli(["discover"], { runtime }).output).toBe("found-devices");
     expect(runCli(["info", "models"]).output).toContain("QL-710W");
     expect(runCli(["info", "labels"]).output).toContain("62");
+    expect(
+      runCli(["info", "env"], {
+        env: {
+          BROTHER_QL_BACKEND: "usb",
+          BROTHER_QL_MODEL: "QL-820NWB",
+          BROTHER_QL_PRINTER: "usb://0x04f9:0x209b"
+        }
+      }).output
+    ).toContain("backend=usb");
     expect(runCli([]).exitCode).toBe(1);
   });
 });

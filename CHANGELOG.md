@@ -27,6 +27,10 @@ and this project aims to follow Semantic Versioning.
 - USB transport lifecycle:
   - Replaced stubbed USB transport methods with lifecycle-aware connect/read/write/dispose behavior
   - Added adapter-level open/transfer/close contracts and lifecycle tests
+- CLI parity implementation:
+  - Added runtime-backed handlers for `print`, `send`, and `discover` commands
+  - Added `info env` and env variable-backed global configuration behavior
+  - Updated `info models`/`info labels` to use core registry data
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
