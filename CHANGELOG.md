@@ -59,3 +59,5 @@ and this project aims to follow Semantic Versioning.
 - CI/CD automation:
   - Added GitHub Actions validation workflow for lint, format, typecheck, and tests
   - Added release workflow scaffold and status badges
+- GitHub Pages docs:
+  - Added docs publication workflow and developer docs landing page content
