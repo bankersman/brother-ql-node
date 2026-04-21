@@ -56,3 +56,6 @@ and this project aims to follow Semantic Versioning.
 - Web transport proof of concept:
   - Added WebUSB transport scaffold and browser-constraint runtime checks
   - Added stretch-track tests for WebUSB availability handling
+- CI/CD automation:
+  - Added GitHub Actions validation workflow for lint, format, typecheck, and tests
+  - Added release workflow scaffold and status badges

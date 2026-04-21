@@ -17,7 +17,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
 - [x] Step 11 - Developer and Consumer Documentation
 - [x] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
-- [ ] Step 13 - CI/CD Automation (GitHub Actions)
+- [x] Step 13 - CI/CD Automation (GitHub Actions)
 - [ ] Step 14 - GitHub Pages Developer Docs
 - [ ] Step 15 - Hardening and Release Candidate
 
@@ -78,3 +78,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added WebUSB proof-of-concept transport surface in `transport-web`
   - Added explicit runtime constraint behavior for environments without WebUSB support
   - Added tests validating browser constraint handling paths
+- Completed Step 13 CI/CD automation:
+  - Added GitHub Actions PR validation workflow for lint/format/typecheck/tests
+  - Added release workflow scaffold (manual and tag-driven)
+  - Added workflow status badges in the root README

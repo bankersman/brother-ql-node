@@ -1,5 +1,8 @@
 # brother-ql-node
 
+[![CI](https://github.com/owner/brother-ql-node/actions/workflows/ci.yml/badge.svg)](https://github.com/owner/brother-ql-node/actions/workflows/ci.yml)
+[![Pages](https://github.com/owner/brother-ql-node/actions/workflows/pages.yml/badge.svg)](https://github.com/owner/brother-ql-node/actions/workflows/pages.yml)
+
 TypeScript workspace for Brother QL printing on modern Node.js, with incremental parity against upstream `brother_ql`.
 
 ## Packages
