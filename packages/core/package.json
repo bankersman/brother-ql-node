@@ -9,6 +9,14 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./blocking-send": {
+      "types": "./dist/blocking-send.d.ts",
+      "default": "./dist/blocking-send.js"
+    },
+    "./command-generator": {
+      "types": "./dist/command-generator.d.ts",
+      "default": "./dist/command-generator.js"
+    },
     "./contracts": {
       "types": "./dist/contracts.d.ts",
       "default": "./dist/contracts.js"

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brother QL — transport-web demo</title>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+        max-width: 52rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+        line-height: 1.45;
+      }
+      fieldset {
+        margin-bottom: 1.25rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      legend {
+        padding: 0 0.35rem;
+      }
+      label {
+        display: block;
+        margin: 0.35rem 0 0.15rem;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: min(100%, 22rem);
+        padding: 0.35rem 0.5rem;
+      }
+      button {
+        margin: 0.35rem 0.5rem 0.35rem 0;
+        padding: 0.4rem 0.75rem;
+      }
+      pre#log {
+        background: #111;
+        color: #e8e8e8;
+        padding: 0.75rem 1rem;
+        border-radius: 6px;
+        min-height: 6rem;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .note {
+        font-size: 0.9rem;
+        color: #444;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Brother QL — browser transport demo</h1>
+    <p class="note">
+      Experimental UI for <code>@brother-ql/transport-web</code>. Use Chrome or
+      another browser with WebUSB. Raw TCP via <code>TCPSocket</code> is usually
+      limited to
+      <a
+        href="https://developer.chrome.com/docs/iwa/direct-sockets"
+        target="_blank"
+        rel="noopener"
+        >Isolated Web Apps</a
+      >
+      or managed deployments — not a normal HTTPS page.
+    </p>
+
+    <fieldset>
+      <legend>Job</legend>
+      <label for="model">Model</label>
+      <input id="model" type="text" value="QL-820NWB" />
+      <label for="label">Label id</label>
+      <input id="label" type="text" value="62" />
+      <label for="image">Image (optional raw bytes fallback)</label>
+      <input id="image" type="file" accept="image/*" />
+    </fieldset>
+
+    <fieldset>
+      <legend>WebUSB</legend>
+      <p class="note">
+        Requires a secure context (HTTPS or localhost) and a user gesture for
+        device selection.
+      </p>
+      <button type="button" id="webusb-connect">Connect WebUSB</button>
+      <button type="button" id="webusb-print">Print (WebUSB)</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>Direct Sockets TCP (experimental)</legend>
+      <label for="tcp-host">Host</label>
+      <input id="tcp-host" type="text" value="192.168.1.50" />
+      <label for="tcp-port">Port</label>
+      <input id="tcp-port" type="number" value="9100" min="1" max="65535" />
+      <button type="button" id="tcp-connect">Connect TCP</button>
+      <button type="button" id="tcp-print">Print (TCP)</button>
+    </fieldset>
+
+    <h2>Log</h2>
+    <pre id="log"></pre>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

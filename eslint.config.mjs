@@ -8,6 +8,7 @@ export default [
   {
     ignores: [
       "**/dist/**",
+      "packages/transport-web/demo/dist/**",
       "coverage/**",
       "node_modules/**",
       "docs/.vitepress/dist/**",
