@@ -16,7 +16,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 9 - High-Level Node SDK API
 - [x] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
 - [x] Step 11 - Developer and Consumer Documentation
-- [ ] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
+- [x] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
 - [ ] Step 13 - CI/CD Automation (GitHub Actions)
 - [ ] Step 14 - GitHub Pages Developer Docs
 - [ ] Step 15 - Hardening and Release Candidate
@@ -74,3 +74,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added root README with package overview and development commands
   - Added package READMEs for core and node transport packages
   - Added contribution guide and development workflow documentation
+- Completed Step 12 browser stretch package:
+  - Added WebUSB proof-of-concept transport surface in `transport-web`
+  - Added explicit runtime constraint behavior for environments without WebUSB support
+  - Added tests validating browser constraint handling paths

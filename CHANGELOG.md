@@ -53,3 +53,6 @@ and this project aims to follow Semantic Versioning.
 - Documentation updates:
   - Added root/package READMEs with usage and architecture context
   - Added `CONTRIBUTING.md` and development workflow documentation
+- Web transport proof of concept:
+  - Added WebUSB transport scaffold and browser-constraint runtime checks
+  - Added stretch-track tests for WebUSB availability handling
