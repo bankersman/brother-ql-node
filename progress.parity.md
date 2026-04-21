@@ -8,7 +8,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
 - [x] Phase 2: Model/Label Registry and Validation Layer
 - [x] Phase 3: Real Image Conversion Pipeline (Parity-Critical)
 - [x] Phase 4: Raster/Protocol Encoder Replacement
-- [ ] Phase 5: Status Frame Parser + Blocking Send Semantics
+- [x] Phase 5: Status Frame Parser + Blocking Send Semantics
 - [ ] Phase 6: Transport Parity
 - [ ] Phase 7: CLI Parity Implementation
 - [ ] Phase 8: Strict Fixture Expansion and Release Gating
@@ -45,3 +45,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
   - Replaced placeholder command payload with raster row packing and protocol framing flow
   - Added media packet and row command generation for mono and two-color paths
   - Added invalidate preamble and final print terminator sequencing
+- Completed Phase 5:
+  - Added status parser with frame validation and error bitfield extraction
+  - Routed blocking send decoding through the parser
+  - Added network sent-only semantics for blocking send outcomes

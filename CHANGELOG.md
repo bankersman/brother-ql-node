@@ -21,6 +21,9 @@ and this project aims to follow Semantic Versioning.
 - Raster encoder replacement:
   - Replaced placeholder command payload generation with raster-row command emission
   - Added protocol framing for initialize/status/media packets and print terminator
+- Status parsing and blocking semantics:
+  - Added status frame parser with validation and mapped printer error bitfields
+  - Updated blocking send flow to parse status frames and model network sent-only outcomes
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
