@@ -8,7 +8,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 1 - Workspace and Tooling Foundation
 - [x] Step 2 - Core Package Skeleton (`@brother-ql/core`)
 - [x] Step 3 - Golden Fixture Harness
-- [ ] Step 4 - Command Generation MVP
+- [x] Step 4 - Command Generation MVP
 - [ ] Step 5 - Command Generation Parity Expansion
 - [ ] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
 - [ ] Step 7 - Blocking Send and Status Semantics
@@ -42,3 +42,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added deterministic JSON fixture loading for golden command fixtures
   - Added reusable hex/byte conversion helpers for parity assertions
   - Added initial upstream fixture subset with passing harness tests
+- Completed Step 4 command generation MVP:
+  - Added baseline command generation flow with initialize, compression, rotation, and cut toggles
+  - Added representative parity test against golden fixture prefix
+  - Preserved green checks for existing scaffold and harness suites

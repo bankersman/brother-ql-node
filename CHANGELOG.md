@@ -29,3 +29,6 @@ and this project aims to follow Semantic Versioning.
   - Added deterministic loader utilities for upstream fixture files
   - Added hex/byte assertion helpers for command stream parity tests
   - Added initial `mono-basic` fixture and passing harness coverage
+- Baseline command generation MVP:
+  - Added baseline command builder with cut, compression, and rotation behavior
+  - Added representative fixture parity test coverage for command prefix alignment
