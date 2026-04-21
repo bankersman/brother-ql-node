@@ -45,4 +45,56 @@ describe("usb transport", () => {
     expect(closeCalls).toBe(1);
     expect(Array.from(response)).toEqual([0x10, 0x11]);
   });
+
+  it("throws when no device is available", async () => {
+    const transport = new UsbTransport({
+      listDevices: () => Promise.resolve([]),
+      openDevice: () => Promise.resolve(),
+      transferOut: () => Promise.resolve(),
+      transferIn: () => Promise.resolve(new Uint8Array()),
+      closeDevice: () => Promise.resolve()
+    });
+
+    await expect(transport.connect()).rejects.toThrow("No USB printer device found.");
+  });
+
+  it("throws for read/write before connect", async () => {
+    const transport = new UsbTransport({
+      listDevices: () => Promise.resolve([{ vendorId: 0x04f9, productId: 0x209b }]),
+      openDevice: () => Promise.resolve(),
+      transferOut: () => Promise.resolve(),
+      transferIn: () => Promise.resolve(new Uint8Array()),
+      closeDevice: () => Promise.resolve()
+    });
+
+    await expect(transport.write({ data: new Uint8Array([1]) })).rejects.toThrow(
+      "Transport is not connected."
+    );
+    await expect(transport.read()).rejects.toThrow("Transport is not connected.");
+  });
+
+  it("prefers explicitly targeted device", async () => {
+    let opened: { vendorId: number; productId: number } | undefined;
+    const transport = new UsbTransport(
+      {
+        listDevices: () =>
+          Promise.resolve([
+            { vendorId: 0x1234, productId: 0x0001 },
+            { vendorId: 0x04f9, productId: 0x209b }
+          ]),
+        openDevice: (device) => {
+          opened = device;
+          return Promise.resolve();
+        },
+        transferOut: () => Promise.resolve(),
+        transferIn: () => Promise.resolve(new Uint8Array()),
+        closeDevice: () => Promise.resolve()
+      },
+      { vendorId: 0x1234, productId: 0x0001 }
+    );
+
+    await transport.connect();
+    expect(opened).toEqual({ vendorId: 0x1234, productId: 0x0001 });
+    await transport.dispose();
+  });
 });

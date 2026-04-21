@@ -64,4 +64,42 @@ describe("image pipeline", () => {
     expect(Array.from(twoColor.redBits)).toEqual([1, 0]);
     expect(Array.from(twoColor.blackBits)).toEqual([0, 1]);
   });
+
+  it("handles rotate=0 passthrough and die-cut auto-rotate swap", () => {
+    const passthrough = applyGeometryRules(
+      { width: 306, height: 425, rgba: solidRgba(306, 425, 0, 0, 0) },
+      { model: "QL-710W", label: "29x42", rotate: 0 }
+    );
+    expect(passthrough.width).toBe(306);
+    expect(passthrough.height).toBe(425);
+
+    const swapped = applyGeometryRules(
+      { width: 425, height: 306, rgba: solidRgba(425, 306, 0, 0, 0) },
+      { model: "QL-710W", label: "29x42", rotate: "auto" }
+    );
+    expect(swapped.width).toBe(306);
+    expect(swapped.height).toBe(425);
+  });
+
+  it("rejects invalid die-cut dimensions", () => {
+    expect(() =>
+      applyGeometryRules(
+        { width: 10, height: 10, rgba: solidRgba(10, 10, 0, 0, 0) },
+        { model: "QL-710W", label: "29x42", rotate: "auto" }
+      )
+    ).toThrow("do not match die-cut label 29x42");
+  });
+
+  it("covers mono non-dither branch and non-red two-color branch", () => {
+    const image = {
+      width: 2,
+      height: 1,
+      rgba: new Uint8Array([220, 220, 220, 255, 200, 100, 100, 255])
+    };
+    const mono = toMonoRaster(image, { thresholdPercent: 50, dither: false });
+    expect(Array.from(mono.bits)).toEqual([0, 0]);
+
+    const twoColor = toTwoColorRaster(image);
+    expect(Array.from(twoColor.redBits)).toEqual([0, 1]);
+  });
 });

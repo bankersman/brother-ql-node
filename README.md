@@ -5,6 +5,13 @@
 
 TypeScript workspace for Brother QL printing on modern Node.js, with incremental parity against upstream `brother_ql`.
 
+## Documentation
+
+- User docs (VitePress source): `docs/src`
+- Run docs locally: `pnpm docs:dev`
+- Build docs for CI/pages: `pnpm docs:build`
+- Upstream inspiration and protocol groundwork: [https://github.com/pklaus/brother_ql](https://github.com/pklaus/brother_ql)
+
 ## Packages
 
 - `@brother-ql/core`: contracts, command generation, parity harness, and blocking send semantics.
@@ -21,5 +28,3 @@ TypeScript workspace for Brother QL printing on modern Node.js, with incremental
   - `pnpm format:check`
   - `pnpm typecheck`
   - `pnpm test`
-
-See `CONTRIBUTING.md` and `docs/development-workflow.md` for contribution and workflow details.

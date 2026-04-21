@@ -15,10 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: mkdir -p site && cp docs/site/index.md site/index.md
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm docs:build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: docs/.vitepress/dist
 
   deploy:
     needs: build

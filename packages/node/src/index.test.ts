@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { BrotherQlNodeClient } from "./index.js";
+import type { TcpTransport } from "../../transport-node/src/index.js";
 import { UsbTransport } from "../../transport-node/src/index.js";
 
 describe("node sdk api", () => {
@@ -30,5 +31,43 @@ describe("node sdk api", () => {
 
     expect(response.ok).toBe(true);
     expect(response.backend).toBe("usb");
+  });
+
+  it("executes tcp path through factory transport", async () => {
+    let disposed = false;
+    const client = new BrotherQlNodeClient({
+      backend: "tcp",
+      host: "192.168.1.10",
+      port: 9101,
+      transportFactory: {
+        createUsbTransport: () => {
+          throw new Error("Not expected in TCP test.");
+        },
+        createTcpTransport: ({ host, port }) => {
+          const transport = {
+            kind: "network",
+            connect: () => Promise.resolve(),
+            write: () => Promise.resolve(),
+            read: () => Promise.resolve(new Uint8Array([2, 0, 0, 0])),
+            dispose: () => {
+              disposed = true;
+              return Promise.resolve();
+            }
+          } as unknown as TcpTransport;
+          expect(host).toBe("192.168.1.10");
+          expect(port).toBe(9101);
+          return transport;
+        }
+      }
+    });
+
+    const response = await client.print({
+      model: "QL-710W",
+      label: "62",
+      imageBytes: new Uint8Array([1, 2, 3]),
+      timeoutMs: 10
+    });
+    expect(response.backend).toBe("tcp");
+    expect(disposed).toBe(true);
   });
 });
