@@ -14,7 +14,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 7 - Blocking Send and Status Semantics
 - [x] Step 8 - USB Backend for Node
 - [x] Step 9 - High-Level Node SDK API
-- [ ] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
+- [x] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
 - [ ] Step 11 - Developer and Consumer Documentation
 - [ ] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
 - [ ] Step 13 - CI/CD Automation (GitHub Actions)
@@ -66,3 +66,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added `@brother-ql/node` package with ergonomic client API and backend selection
   - Added `print` entry point that routes through baseline command generation and transport send flow
   - Added SDK usage test for USB happy-path behavior
+- Completed Step 10 CLI parity:
+  - Added V1 command handlers for `print`, `send`, `info models`, and `info labels`
+  - Added stable usage output for unsupported command forms
+  - Added CLI command coverage tests for key command paths

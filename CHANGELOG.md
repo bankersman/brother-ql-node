@@ -47,3 +47,6 @@ and this project aims to follow Semantic Versioning.
 - Node SDK API:
   - Added high-level `@brother-ql/node` client with backend selection and print entry point
   - Added SDK usage test coverage for client happy-path behavior
+- CLI parity commands:
+  - Added `print`, `send`, `info models`, and `info labels` command handlers
+  - Added command-path test coverage and usage fallback output
