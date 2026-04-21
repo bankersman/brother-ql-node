@@ -38,7 +38,10 @@ export function normalizeRgbaImage(image: RasterImage): RasterImage {
   return { ...image, rgba: out };
 }
 
-function rotateImage(image: RasterImage, rotate: 0 | 90 | 180 | 270): RasterImage {
+function rotateImage(
+  image: RasterImage,
+  rotate: 0 | 90 | 180 | 270
+): RasterImage {
   if (rotate === 0) {
     return image;
   }

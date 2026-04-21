@@ -51,7 +51,10 @@ export function runCli(
     return { exitCode: 0, output: runtime.send({ printer: config.printer }) };
   }
   if (command === "discover") {
-    return { exitCode: 0, output: runtime.discover({ backend: config.backend }) };
+    return {
+      exitCode: 0,
+      output: runtime.discover({ backend: config.backend })
+    };
   }
   if (command === "info" && subcommand === "models") {
     return {

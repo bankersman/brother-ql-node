@@ -50,7 +50,9 @@ function defaultRasterImage(request: CommandGenerationRequest): RasterImage {
   return { width, height, rgba };
 }
 
-export function generateBaselineCommand(request: CommandGenerationRequest): CommandBuffer {
+export function generateBaselineCommand(
+  request: CommandGenerationRequest
+): CommandBuffer {
   if (!request.model.trim()) {
     throw new Error("Model is required.");
   }
@@ -77,7 +79,10 @@ export function generateBaselineCommand(request: CommandGenerationRequest): Comm
     geometryRequest.dpi600 = options.highQuality;
   }
   geometryRequest.rotate = options.rotate180 ? 180 : "auto";
-  const image = applyGeometryRules(defaultRasterImage(request), geometryRequest);
+  const image = applyGeometryRules(
+    defaultRasterImage(request),
+    geometryRequest
+  );
   const monoOptions: { thresholdPercent?: number; dither?: boolean } = {};
   if (options.threshold !== undefined) {
     monoOptions.thresholdPercent = options.threshold;
@@ -155,11 +160,25 @@ export function generateBaselineCommand(request: CommandGenerationRequest): Comm
       const packedBlack = packRowBits(blackBits);
       const packedRed = packRowBits(redBits);
       const blackRow = new Uint8Array(rowBytes);
-      blackRow.set(packedBlack.subarray(0, Math.min(packedBlack.length, rowBytes)));
+      blackRow.set(
+        packedBlack.subarray(0, Math.min(packedBlack.length, rowBytes))
+      );
       const redRow = new Uint8Array(rowBytes);
       redRow.set(packedRed.subarray(0, Math.min(packedRed.length, rowBytes)));
-      chunks.push(0x77, 0x01, rowBytes & 0xff, (rowBytes >> 8) & 0xff, ...blackRow);
-      chunks.push(0x77, 0x02, rowBytes & 0xff, (rowBytes >> 8) & 0xff, ...redRow);
+      chunks.push(
+        0x77,
+        0x01,
+        rowBytes & 0xff,
+        (rowBytes >> 8) & 0xff,
+        ...blackRow
+      );
+      chunks.push(
+        0x77,
+        0x02,
+        rowBytes & 0xff,
+        (rowBytes >> 8) & 0xff,
+        ...redRow
+      );
     } else {
       chunks.push(0x67, 0x00, rowBytes & 0xff, (rowBytes >> 8) & 0xff, ...row);
     }

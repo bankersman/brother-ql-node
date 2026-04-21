@@ -55,22 +55,27 @@ describe("usb transport", () => {
       closeDevice: () => Promise.resolve()
     });
 
-    await expect(transport.connect()).rejects.toThrow("No USB printer device found.");
+    await expect(transport.connect()).rejects.toThrow(
+      "No USB printer device found."
+    );
   });
 
   it("throws for read/write before connect", async () => {
     const transport = new UsbTransport({
-      listDevices: () => Promise.resolve([{ vendorId: 0x04f9, productId: 0x209b }]),
+      listDevices: () =>
+        Promise.resolve([{ vendorId: 0x04f9, productId: 0x209b }]),
       openDevice: () => Promise.resolve(),
       transferOut: () => Promise.resolve(),
       transferIn: () => Promise.resolve(new Uint8Array()),
       closeDevice: () => Promise.resolve()
     });
 
-    await expect(transport.write({ data: new Uint8Array([1]) })).rejects.toThrow(
+    await expect(
+      transport.write({ data: new Uint8Array([1]) })
+    ).rejects.toThrow("Transport is not connected.");
+    await expect(transport.read()).rejects.toThrow(
       "Transport is not connected."
     );
-    await expect(transport.read()).rejects.toThrow("Transport is not connected.");
   });
 
   it("prefers explicitly targeted device", async () => {

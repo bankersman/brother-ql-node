@@ -30,7 +30,8 @@ export class BrotherQlNodeClient {
 
     if (this.options.backend === "usb") {
       const transport =
-        this.options.transportFactory?.createUsbTransport() ?? new UsbTransport();
+        this.options.transportFactory?.createUsbTransport() ??
+        new UsbTransport();
       await transport.connect();
       await transport.write({ data: command.bytes });
       await transport.dispose();

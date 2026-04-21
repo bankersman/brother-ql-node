@@ -48,7 +48,9 @@ describe("command generation", () => {
       }
     });
 
-    expect(Array.from(generated.bytes)).toEqual(expect.arrayContaining([0x69, 0x52, 0x01]));
+    expect(Array.from(generated.bytes)).toEqual(
+      expect.arrayContaining([0x69, 0x52, 0x01])
+    );
     expect(Array.from(generated.bytes)).toContain(0x77);
   });
 

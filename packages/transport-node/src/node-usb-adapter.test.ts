@@ -21,7 +21,9 @@ describe("node usb adapter", () => {
     await adapter.openDevice({ vendorId: 0x04f9, productId: 0x209b });
     expect(fakeDevice.open).toHaveBeenCalled();
 
-    await expect(adapter.transferOut(new Uint8Array([1]))).resolves.toBeUndefined();
+    await expect(
+      adapter.transferOut(new Uint8Array([1]))
+    ).resolves.toBeUndefined();
     await expect(adapter.transferIn(2)).resolves.toEqual(new Uint8Array(2));
 
     await adapter.closeDevice();

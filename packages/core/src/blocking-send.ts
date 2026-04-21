@@ -27,7 +27,12 @@ export async function sendBlocking(
     timeoutMs: request.timeoutMs
   });
   if (request.transport.kind === "network") {
-    return { completed: false, ambiguous: true, sent: true, finalStatus: undefined };
+    return {
+      completed: false,
+      ambiguous: true,
+      sent: true,
+      finalStatus: undefined
+    };
   }
 
   let lastStatus: StatusFrame | undefined;
@@ -39,14 +44,29 @@ export async function sendBlocking(
       lastStatus.phaseType === "completed" &&
       lastStatus.statusType === "ok"
     ) {
-      return { completed: true, ambiguous: false, sent: true, finalStatus: lastStatus };
+      return {
+        completed: true,
+        ambiguous: false,
+        sent: true,
+        finalStatus: lastStatus
+      };
     }
     if (lastStatus.phaseType === "error") {
-      return { completed: false, ambiguous: false, sent: true, finalStatus: lastStatus };
+      return {
+        completed: false,
+        ambiguous: false,
+        sent: true,
+        finalStatus: lastStatus
+      };
     }
   }
 
-  return { completed: false, ambiguous: true, sent: true, finalStatus: lastStatus };
+  return {
+    completed: false,
+    ambiguous: true,
+    sent: true,
+    finalStatus: lastStatus
+  };
 }
 
 export function decodeStatusFrame(raw: Uint8Array): StatusFrame {

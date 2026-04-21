@@ -18,9 +18,9 @@ describe("model and label registry", () => {
   });
 
   it("validates restricted model compatibility", () => {
-    expect(() => validateModelLabelCompatibility("QL-710W", "102")).toThrowError(
-      "Label 102 is not supported on model QL-710W."
-    );
+    expect(() =>
+      validateModelLabelCompatibility("QL-710W", "102")
+    ).toThrowError("Label 102 is not supported on model QL-710W.");
     expect(() =>
       validateModelLabelCompatibility("QL-1100", "102")
     ).not.toThrow();

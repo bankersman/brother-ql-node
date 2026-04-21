@@ -25,7 +25,13 @@ export function parseStatusFrame(raw: Uint8Array): ParsedStatusFrame {
 
   const frame: ParsedStatusFrame = {
     phaseType:
-      phase === 2 ? "completed" : phase === 1 ? "printing" : phase === 255 ? "error" : "waiting",
+      phase === 2
+        ? "completed"
+        : phase === 1
+          ? "printing"
+          : phase === 255
+            ? "error"
+            : "waiting",
     statusType:
       status === STATUS_OK
         ? "ok"
