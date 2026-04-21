@@ -1,0 +1,47 @@
+import { generateBaselineCommand, sendBlocking } from "../../core/src/index.js";
+import { TcpTransport, UsbTransport } from "../../transport-node/src/index.js";
+
+export type NodeBackend = "tcp" | "usb";
+
+export interface BrotherQlNodeClientOptions {
+  backend: NodeBackend;
+  host?: string;
+  port?: number;
+}
+
+export class BrotherQlNodeClient {
+  constructor(private readonly options: BrotherQlNodeClientOptions) {}
+
+  async print(input: {
+    model: string;
+    label: string;
+    imageBytes: Uint8Array;
+    timeoutMs?: number;
+  }) {
+    const command = generateBaselineCommand({
+      model: input.model,
+      label: input.label,
+      imageBytes: input.imageBytes
+    });
+
+    if (this.options.backend === "usb") {
+      const transport = new UsbTransport();
+      await transport.connect();
+      await transport.write({ data: command.bytes });
+      await transport.dispose();
+      return { ok: true as const, backend: "usb" as const };
+    }
+
+    const transport = new TcpTransport({
+      host: this.options.host ?? "127.0.0.1",
+      port: this.options.port ?? 9100
+    });
+    const result = await sendBlocking({
+      transport,
+      payload: command.bytes,
+      timeoutMs: input.timeoutMs ?? 1000
+    });
+    await transport.dispose();
+    return { ok: result.completed, backend: "tcp" as const, result };
+  }
+}

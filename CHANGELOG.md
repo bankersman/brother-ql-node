@@ -44,3 +44,6 @@ and this project aims to follow Semantic Versioning.
 - USB backend and discovery:
   - Added `usb` (node-usb) integration adapter for Node USB device enumeration
   - Added USB transport scaffold and test-covered discovery entry point
+- Node SDK API:
+  - Added high-level `@brother-ql/node` client with backend selection and print entry point
+  - Added SDK usage test coverage for client happy-path behavior

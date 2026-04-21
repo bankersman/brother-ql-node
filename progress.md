@@ -13,7 +13,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
 - [x] Step 7 - Blocking Send and Status Semantics
 - [x] Step 8 - USB Backend for Node
-- [ ] Step 9 - High-Level Node SDK API
+- [x] Step 9 - High-Level Node SDK API
 - [ ] Step 10 - CLI Package (`@brother-ql/cli`) V1 Parity
 - [ ] Step 11 - Developer and Consumer Documentation
 - [ ] Step 12 - Browser Stretch Package (`@brother-ql/transport-web`) [Non-blocking]
@@ -62,3 +62,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added USB transport scaffold and device discovery API using `usb` (node-usb)
   - Added adapter abstraction to support testable USB device listing
   - Added unit tests for discovery behavior via injected adapter
+- Completed Step 9 high-level Node SDK API:
+  - Added `@brother-ql/node` package with ergonomic client API and backend selection
+  - Added `print` entry point that routes through baseline command generation and transport send flow
+  - Added SDK usage test for USB happy-path behavior
