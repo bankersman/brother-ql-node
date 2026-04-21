@@ -7,11 +7,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "lcov"],
       include: ["packages/**/*.ts"],
-      exclude: [
-        "**/*.test.ts",
-        "**/contracts.ts",
-        "packages/transport-web/demo/**"
-      ],
+      exclude: ["**/*.test.ts", "**/contracts.ts", "packages/web/demo/**"],
       thresholds: {
         lines: 80,
         functions: 80,

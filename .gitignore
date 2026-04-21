@@ -4,6 +4,7 @@ node_modules/
 
 # Build outputs
 dist/
+docs/public/web-demo/
 docs/.vitepress/dist/
 docs/.vitepress/cache/
 coverage/

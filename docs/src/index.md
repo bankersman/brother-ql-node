@@ -15,6 +15,9 @@ hero:
     - theme: alt
       text: Repository
       link: https://github.com/bankersman/brother-ql-node
+    - theme: alt
+      text: Try in browser
+      link: /guide/try-in-browser
 
 features:
   - title: Ported registry data

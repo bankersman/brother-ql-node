@@ -21,7 +21,10 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm docs:build
+      - name: Build docs (includes web demo for /web-demo/)
+        run: pnpm docs:build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
       - uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist

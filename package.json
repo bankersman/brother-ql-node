@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
+    "build:web-demo-for-docs": "node scripts/build-web-demo-for-docs.mjs",
+    "docs:build": "pnpm run build:web-demo-for-docs && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {

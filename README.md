@@ -13,7 +13,7 @@ TypeScript workspace for Brother QL printing on modern Node.js, with incremental
 - **Live site:** [https://bankersman.github.io/brother-ql-node/](https://bankersman.github.io/brother-ql-node/)
 - VitePress source: `docs/` (pages under `docs/src/`)
 - Local preview: `pnpm docs:dev`
-- Production build (same as GitHub Pages): `pnpm docs:build`
+- Production build (same as GitHub Pages): `pnpm docs:build` — also builds the embedded **web demo** at `/web-demo/` (see `build:web-demo-for-docs` in root `package.json`)
 
 ## Usage
 
@@ -90,8 +90,9 @@ Defaults come from env: `BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PR
 - `@brother-ql/core`: contracts, command generation, parity harness, and blocking send semantics.
 - `@brother-ql/transport-node`: TCP and USB transport implementations.
 - `@brother-ql/node`: high-level SDK for Node applications.
+- `@brother-ql/web`: high-level SDK for browser applications (WebUSB and experimental Direct Sockets TCP).
 - `@brother-ql/cli`: V1 parity command surface for common operations.
-- `@brother-ql/transport-web`: stretch package for browser transport experiments.
+- `@brother-ql/transport-web`: low-level browser `RuntimeTransport` implementations (WebUSB, Direct Sockets TCP).
 
 ## Development
 

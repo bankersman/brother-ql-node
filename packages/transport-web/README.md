@@ -1,6 +1,6 @@
 # @brother-ql/transport-web
 
-**@brother-ql/transport-web** is an **experimental browser-side** package for Brother QL printing. It implements [`RuntimeTransport`](https://github.com/bankersman/brother-ql-node/blob/main/packages/core/src/contracts.ts) for **WebUSB** and an optional **Direct Sockets** TCP path. Parity and documentation depth are lighter here than for the Node stack (`@brother-ql/node` / `@brother-ql/transport-node`).
+**@brother-ql/transport-web** provides **low-level browser** [`RuntimeTransport`](https://github.com/bankersman/brother-ql-node/blob/main/packages/core/src/contracts.ts) implementations for **WebUSB** and optional **Direct Sockets** TCP (`TCPSocket`). For application code, prefer **[`@brother-ql/web`](https://github.com/bankersman/brother-ql-node/tree/main/packages/web)** — it mirrors the Node SDK shape (`BrotherQlWebClient`) and handles WebUSB session lifecycle. Use this package when you need direct control over transports. Parity and documentation depth are lighter here than for the Node stack (`@brother-ql/node` / `@brother-ql/transport-node`).
 
 ## Documentation
 
@@ -53,24 +53,27 @@ Chrome’s **Direct Sockets** API exposes `TCPSocket` for raw TCP. It is **not**
 
 `DirectSocketsTcpTransport` uses `globalThis.TCPSocket` when present and implements `kind: "network"`. [`sendBlocking`](https://github.com/bankersman/brother-ql-node/blob/main/packages/core/src/blocking-send.ts) treats network transports as **send-only / ambiguous completion**, consistent with the Node TCP backend.
 
-## Chrome demo (monorepo)
+## Demo (monorepo)
 
-A small Vite app lives under `packages/transport-web/demo`. Run from the repo root:
+The Vite demo lives under **`packages/web/demo`** (`@brother-ql/web-demo`) and depends on **`@brother-ql/web`**. Run from the repo root:
 
 ```bash
-pnpm --filter @brother-ql/transport-web-demo dev
+pnpm --filter @brother-ql/web-demo dev
 ```
 
 Then open the printed local URL (default port `5173`). The demo exercises WebUSB and, when `TCPSocket` exists, Direct Sockets TCP.
 
-Production build (also runs as part of `pnpm build`):
+Production build of the demo (also runs as part of `pnpm build`):
 
 ```bash
-pnpm --filter @brother-ql/transport-web-demo build
+pnpm --filter @brother-ql/web-demo build
 ```
+
+The documentation site build embeds that bundle; see root **`pnpm docs:build`** and **`build:web-demo-for-docs`**.
 
 ## Related packages
 
 - **`@brother-ql/core`** — protocol, command generation, blocking send
+- **`@brother-ql/web`** — high-level browser client (recommended for apps)
 - **`@brother-ql/node`** — production-oriented printing on Node.js
 - **`@brother-ql/transport-node`** — Node TCP/USB transports

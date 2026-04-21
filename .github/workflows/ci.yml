@@ -27,4 +27,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage/lcov.info
           fail_ci_if_error: false
-      - run: pnpm docs:build
+      - name: Build docs (includes web demo)
+        run: pnpm docs:build
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}

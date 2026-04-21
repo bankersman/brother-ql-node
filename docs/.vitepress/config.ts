@@ -19,9 +19,11 @@ export default defineConfig({
   description: "User docs for Brother QL printing from Node.js",
   srcDir: "src",
   base: resolveBase(),
+  ignoreDeadLinks: [/^\/web-demo(\/.*)?$/],
   themeConfig: {
     nav: [
       { text: "Guide", link: "/guide/app-integration" },
+      { text: "Try in browser", link: "/guide/try-in-browser" },
       { text: "Printers & media", link: "/guide/supported-hardware-and-media" },
       { text: "CLI", link: "/cli/overview" },
       { text: "Reference", link: "/reference/analysis-notes" },
@@ -43,6 +45,7 @@ export default defineConfig({
             text: "Supported printers & media",
             link: "/guide/supported-hardware-and-media"
           },
+          { text: "Try in browser", link: "/guide/try-in-browser" },
           { text: "Troubleshooting", link: "/guide/troubleshooting" }
         ]
       },
