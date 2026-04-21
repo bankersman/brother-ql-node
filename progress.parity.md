@@ -9,7 +9,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
 - [x] Phase 3: Real Image Conversion Pipeline (Parity-Critical)
 - [x] Phase 4: Raster/Protocol Encoder Replacement
 - [x] Phase 5: Status Frame Parser + Blocking Send Semantics
-- [ ] Phase 6: Transport Parity
+- [x] Phase 6: Transport Parity
 - [ ] Phase 7: CLI Parity Implementation
 - [ ] Phase 8: Strict Fixture Expansion and Release Gating
 
@@ -49,3 +49,7 @@ Tracking progress for the new QL parity remediation track (separate from previou
   - Added status parser with frame validation and error bitfield extraction
   - Routed blocking send decoding through the parser
   - Added network sent-only semantics for blocking send outcomes
+- Completed Phase 6:
+  - Replaced USB no-op behavior with connect/write/read/dispose lifecycle abstraction
+  - Added Node USB adapter device open/close + transfer method contracts
+  - Added lifecycle tests for USB transport behavior

@@ -7,6 +7,10 @@ export interface BrotherQlNodeClientOptions {
   backend: NodeBackend;
   host?: string;
   port?: number;
+  transportFactory?: {
+    createUsbTransport(): UsbTransport;
+    createTcpTransport(input: { host: string; port: number }): TcpTransport;
+  };
 }
 
 export class BrotherQlNodeClient {
@@ -25,17 +29,19 @@ export class BrotherQlNodeClient {
     });
 
     if (this.options.backend === "usb") {
-      const transport = new UsbTransport();
+      const transport =
+        this.options.transportFactory?.createUsbTransport() ?? new UsbTransport();
       await transport.connect();
       await transport.write({ data: command.bytes });
       await transport.dispose();
       return { ok: true as const, backend: "usb" as const };
     }
 
-    const transport = new TcpTransport({
-      host: this.options.host ?? "127.0.0.1",
-      port: this.options.port ?? 9100
-    });
+    const host = this.options.host ?? "127.0.0.1";
+    const port = this.options.port ?? 9100;
+    const transport =
+      this.options.transportFactory?.createTcpTransport({ host, port }) ??
+      new TcpTransport({ host, port });
     const result = await sendBlocking({
       transport,
       payload: command.bytes,

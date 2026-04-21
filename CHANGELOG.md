@@ -24,6 +24,9 @@ and this project aims to follow Semantic Versioning.
 - Status parsing and blocking semantics:
   - Added status frame parser with validation and mapped printer error bitfields
   - Updated blocking send flow to parse status frames and model network sent-only outcomes
+- USB transport lifecycle:
+  - Replaced stubbed USB transport methods with lifecycle-aware connect/read/write/dispose behavior
+  - Added adapter-level open/transfer/close contracts and lifecycle tests
 
 - Initial planning and tracking artifacts:
   - `PLAN.md`
