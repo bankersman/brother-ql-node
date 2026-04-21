@@ -14,6 +14,9 @@ importers:
       '@types/node':
         specifier: ^24.0.0
         version: 24.12.2
+      '@types/w3c-web-usb':
+        specifier: ^1.0.14
+        version: 1.0.14
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.31.1
         version: 8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)
@@ -74,7 +77,15 @@ importers:
         specifier: ^2.17.0
         version: 2.17.0
 
-  packages/transport-web: {}
+  packages/transport-web:
+    dependencies:
+      '@brother-ql/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@types/w3c-web-usb':
+        specifier: ^1.0.14
+        version: 1.0.14
 
 packages:
 

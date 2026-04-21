@@ -35,5 +35,20 @@ export default [
       ...tsPlugin.configs["recommended-type-checked"].rules
     }
   },
+  {
+    files: ["packages/transport-web/**/*.ts"],
+    languageOptions: {
+      parser,
+      globals: {
+        ...globals.node,
+        ...globals.browser,
+        USBDeviceFilter: "readonly"
+      },
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname
+      }
+    }
+  },
   eslintConfigPrettier
 ];
