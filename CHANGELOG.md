@@ -32,3 +32,6 @@ and this project aims to follow Semantic Versioning.
 - Baseline command generation MVP:
   - Added baseline command builder with cut, compression, and rotation behavior
   - Added representative fixture parity test coverage for command prefix alignment
+- Expanded parity options:
+  - Added threshold, dither, high-quality, and two-color option command handling
+  - Added validation for invalid model/label identifiers and threshold bounds

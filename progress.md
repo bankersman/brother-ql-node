@@ -9,7 +9,7 @@ Tracking implementation progress against `PLAN.md`.
 - [x] Step 2 - Core Package Skeleton (`@brother-ql/core`)
 - [x] Step 3 - Golden Fixture Harness
 - [x] Step 4 - Command Generation MVP
-- [ ] Step 5 - Command Generation Parity Expansion
+- [x] Step 5 - Command Generation Parity Expansion
 - [ ] Step 6 - Node Transport Package (`@brother-ql/transport-node`) - Network First
 - [ ] Step 7 - Blocking Send and Status Semantics
 - [ ] Step 8 - USB Backend for Node
@@ -46,3 +46,7 @@ Tracking implementation progress against `PLAN.md`.
   - Added baseline command generation flow with initialize, compression, rotation, and cut toggles
   - Added representative parity test against golden fixture prefix
   - Preserved green checks for existing scaffold and harness suites
+- Completed Step 5 command generation parity expansion:
+  - Added quality, dither, threshold, and two-color command flags in baseline generator
+  - Added input validation for model/label and threshold bounds
+  - Added expanded option and negative-path tests

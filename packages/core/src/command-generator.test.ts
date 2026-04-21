@@ -36,4 +36,53 @@ describe("command generation MVP", () => {
       bytesToHex(generated.bytes).startsWith(fixture.instruction_hex)
     ).toBe(true);
   });
+
+  it("supports expanded parity option toggles", () => {
+    const generated = generateBaselineCommand({
+      model: "QL-820NWB",
+      label: "62",
+      imageBytes: new Uint8Array([1]),
+      options: {
+        highQuality: true,
+        dither: true,
+        threshold: 80,
+        colorMode: "red-black"
+      }
+    });
+
+    expect(Array.from(generated.bytes)).toEqual(
+      expect.arrayContaining([
+        0x69, 0x7a, 0x01, 0x69, 0x64, 0x01, 0x69, 0x74, 80
+      ])
+    );
+  });
+
+  it("fails on invalid threshold and missing identifiers", () => {
+    expect(() =>
+      generateBaselineCommand({
+        model: "",
+        label: "62",
+        imageBytes: new Uint8Array(),
+        options: {}
+      })
+    ).toThrow("Model is required.");
+
+    expect(() =>
+      generateBaselineCommand({
+        model: "QL-710W",
+        label: "",
+        imageBytes: new Uint8Array(),
+        options: {}
+      })
+    ).toThrow("Label is required.");
+
+    expect(() =>
+      generateBaselineCommand({
+        model: "QL-710W",
+        label: "62",
+        imageBytes: new Uint8Array(),
+        options: { threshold: 101 }
+      })
+    ).toThrow("Threshold must be between 0 and 100.");
+  });
 });
