@@ -13,3 +13,11 @@ and this project aims to follow Semantic Versioning.
   - `PLAN.md`
   - `progress.md`
   - `.gitignore`
+- Workspace and tooling foundation:
+  - Added pnpm workspace configuration and root scripts for lint, format, typecheck, and tests
+  - Added strict TypeScript, ESLint, Prettier, and Vitest configurations
+  - Scaffolded initial packages:
+    - `@brother-ql/core`
+    - `@brother-ql/transport-node`
+    - `@brother-ql/cli`
+    - `@brother-ql/transport-web`

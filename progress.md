@@ -5,7 +5,7 @@ Tracking implementation progress against `PLAN.md`.
 ## Step Checklist
 
 - [x] Step 0 - Repository Bootstrap and Planning Ledger
-- [ ] Step 1 - Workspace and Tooling Foundation
+- [x] Step 1 - Workspace and Tooling Foundation
 - [ ] Step 2 - Core Package Skeleton (`@brother-ql/core`)
 - [ ] Step 3 - Golden Fixture Harness
 - [ ] Step 4 - Command Generation MVP
@@ -29,3 +29,8 @@ Tracking implementation progress against `PLAN.md`.
   - Added `progress.md`
   - Added `CHANGELOG.md`
   - Added `.gitignore`
+- Completed Step 1 workspace and tooling foundation:
+  - Added pnpm workspace and root package scripts for lint/format/typecheck/test
+  - Added TypeScript strict base config, ESLint config, Prettier config, and Vitest setup
+  - Scaffolded package layout for `core`, `transport-node`, `cli`, and `transport-web`
+  - Added initial scaffold tests and passed full quality gate locally

@@ -1,0 +1,6 @@
+docs/analysis/**
+spec/upstream/**
+upstream_src/**
+packages/core/src/data/*.json
+PLAN.md
+pnpm-lock.yaml

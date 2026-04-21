@@ -1,0 +1,28 @@
+import js from "@eslint/js";
+import parser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import eslintConfigPrettier from "eslint-config-prettier";
+
+export default [
+  {
+    ignores: ["dist/**", "coverage/**", "node_modules/**"]
+  },
+  js.configs.recommended,
+  {
+    files: ["**/*.ts"],
+    languageOptions: {
+      parser,
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname
+      }
+    },
+    plugins: {
+      "@typescript-eslint": tsPlugin
+    },
+    rules: {
+      ...tsPlugin.configs["recommended-type-checked"].rules
+    }
+  },
+  eslintConfigPrettier
+];
