@@ -22,10 +22,11 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "Guide", link: "/guide/app-integration" },
+      { text: "Printers & media", link: "/guide/supported-hardware-and-media" },
       { text: "CLI", link: "/cli/overview" },
       { text: "Reference", link: "/reference/analysis-notes" },
       {
-        text: "Upstream",
+        text: "Upstream brother_ql",
         link: "https://github.com/pklaus/brother_ql"
       }
     ],
@@ -38,6 +39,10 @@ export default defineConfig({
         text: "Guide",
         items: [
           { text: "App integration", link: "/guide/app-integration" },
+          {
+            text: "Supported printers & media",
+            link: "/guide/supported-hardware-and-media"
+          },
           { text: "Troubleshooting", link: "/guide/troubleshooting" }
         ]
       },
@@ -55,7 +60,7 @@ export default defineConfig({
       }
     ],
     socialLinks: [
-      { icon: "github", link: "https://github.com/pklaus/brother_ql" }
+      { icon: "github", link: "https://github.com/bankersman/brother_ql_node" }
     ]
   }
 });
