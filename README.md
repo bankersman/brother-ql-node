@@ -1,7 +1,7 @@
 # brother-ql-node
 
 [![CI](https://github.com/bankersman/brother_ql_node/actions/workflows/ci.yml/badge.svg)](https://github.com/bankersman/brother_ql_node/actions/workflows/ci.yml)
-[![Pages](https://github.com/bankersman/brother_ql_node/actions/workflows/pages.yml/badge.svg)](https://github.com/bankersman/brother_ql_node/actions/workflows/pages.yml)
+[![Pages](https://github.com/bankersman/brother_ql_node/actions/workflows/pages.yml/badge.svg)](https://bankersman.github.io/brother_ql_node/)
 [![codecov](https://codecov.io/gh/bankersman/brother_ql_node/graph/badge.svg)](https://codecov.io/gh/bankersman/brother_ql_node)
 
 TypeScript workspace for Brother QL printing on modern Node.js, with incremental parity against upstream [`brother_ql`](https://github.com/pklaus/brother_ql).
@@ -10,10 +10,74 @@ TypeScript workspace for Brother QL printing on modern Node.js, with incremental
 
 ## Documentation
 
-- VitePress root: `docs/` (Markdown pages under `docs/src/`)
+- **Live site:** [https://bankersman.github.io/brother_ql_node/](https://bankersman.github.io/brother_ql_node/)
+- VitePress source: `docs/` (pages under `docs/src/`)
 - Local preview: `pnpm docs:dev`
-- Production build (also used by GitHub Pages): `pnpm docs:build`
-- Published site: workflow [Pages](https://github.com/bankersman/brother_ql_node/actions/workflows/pages.yml) on the `main` branch
+- Production build (same as GitHub Pages): `pnpm docs:build`
+
+## Usage (clone this repository)
+
+Packages are workspace `private` today: clone the repo, install once, then import from `packages/...` paths (or wire your app into the workspace). Use **Node.js 24+** to match `engines` and CI.
+
+From the repository root after `pnpm install`:
+
+### Print over TCP (`@brother-ql/node`)
+
+Save as `print-tcp.ts` next to `package.json` and run `pnpm exec tsx print-tcp.ts` (adjust `host` / `model` / `label` for your printer):
+
+```typescript
+import { BrotherQlNodeClient } from "./packages/node/src/index.js";
+
+const client = new BrotherQlNodeClient({
+  backend: "tcp",
+  host: "192.168.1.50",
+  port: 9100
+});
+
+const result = await client.print({
+  model: "QL-710W",
+  label: "62",
+  imageBytes: new Uint8Array([255, 255, 0, 0]),
+  timeoutMs: 2000
+});
+
+console.log(result);
+```
+
+### Print over USB (`@brother-ql/node`)
+
+```typescript
+import { BrotherQlNodeClient } from "./packages/node/src/index.js";
+
+const client = new BrotherQlNodeClient({ backend: "usb" });
+
+const result = await client.print({
+  model: "QL-820NWB",
+  label: "62",
+  imageBytes: new Uint8Array([255, 255, 0, 0])
+});
+
+console.log(result);
+```
+
+USB needs the native `usb` dependency and OS permissions; see the docs site for practical notes.
+
+### CLI (`@brother-ql/cli`)
+
+`runCli` is the programmatic entry (a thin shell binary is not wired yet). Example from the repo root:
+
+```typescript
+import { runCli } from "./packages/cli/src/index.js";
+
+console.log(
+  runCli(["info", "models"]).output.split("\n").slice(0, 8).join("\n")
+);
+console.log(
+  runCli(["info", "labels"]).output.split("\n").slice(0, 8).join("\n")
+);
+```
+
+Defaults come from env: `BROTHER_QL_BACKEND`, `BROTHER_QL_MODEL`, `BROTHER_QL_PRINTER`. The default runtime still stubs `print` / `send` / `discover` strings; `info models` and `info labels` use the real registry.
 
 ## Packages
 
